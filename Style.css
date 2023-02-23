@@ -1,0 +1,37 @@
+* {
+    background-color:floralwhite;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo {
+    border-radius: 50%;
+    animation: glowing 7000ms infinite;
+}
+
+@keyframes glowing {
+    0% { box-shadow: 0 0 -10px #000; }
+    40% { box-shadow: 0 0 20px #000; }
+    60% { box-shadow: 0 0 20px #000; }
+    100% { box-shadow: 0 0 -10px #000; }
+}
+
+.info {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    bottom: 15px;
+    left: 2px;
+}
+
+.info:hover {
+    border: 1px red solid;
+    border-radius: 50%;
+}
+
+#information {
+    display: none;
+}

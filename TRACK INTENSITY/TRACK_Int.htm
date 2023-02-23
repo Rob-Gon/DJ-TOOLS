@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Roberto González">
+    <meta name="description" content="Track intensity to your set">
+    <meta name="keywords" content="DJ, Track, Set, Genre, Pitch, Intensity, Overtonica">
+    <link rel="stylesheet" type="text/css" href="../Style.css">
+    <script src="TRACK_Int.js"></script>
+    <title>TRACK INTENSITY</title>
+</head>
+
+<body>
+
+    <!-- Logo -->
+    <img class="logo" src="../DJ.jpg" width="100px" height="100px">
+
+    <!-- Header [Link to BPM Calculator] -->
+    <header><h2><a href="../BPM CALCULATOR/BPM_Calc.htm">BPM Calculator</a></h2></header>
+
+        <!-- Information about the site [Shown when click the button "i"] -->
+        <script src="../information.js"></script>
+        <h1>TRACK INTENSITY<img class="info" src="../Info.png" onclick="showInfo()"></h1>
+        <p id="information">This page has been created with the function of calculating the intensity of the tracks that will be introduced in a set.<br><br><b>Formula</b><br><br>X = G * (P<sup>2</sup> + I)<br><br><b>Values</b><br><br>Genre = 0/1 || Pitch = 1/10 || Intensity = 1/5/10<br><br><b>Results</b><br><br>X = 0 : Discard || X = 100 : Neutral Energy || X = 105 : Medium Energy || X = 110 : High Energy<br><br>X = 2/6/11 : Pitch Problem
+        <br><br><iframe style="border:1px gray solid" width="560" height="315" src="https://www.youtube.com/embed/Ca0zkuGYA1g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+        
+        <!-- Main Form -->
+        <form onsubmit="calcInt(); return false;">
+        
+            <label>         <!-- Name of the track -->
+                Name: <br>
+                <input type="text" name="name" id="name"/> <br>
+            </label>
+            <br>
+            <label>         <!-- Genre of the track -->
+                Genre: <br>
+                <input type="text" name="genre" id="genre"/> <br>
+            </label>
+            <br>
+            <label>         <!-- Pitch of the track -->
+                Pitch: <br>
+                <input type="text" name="pitch" id="pitch"/> <br>
+            </label>
+            <br>
+            <label>         <!-- Intensity of the track -->
+                Intensity: <br>
+                <input type="text" name="int" id="int"/> <br>
+            </label>
+            <br>
+            
+            <input type="submit" value="Send"> <input type="reset" value="Reset">
+
+        </form>
+
+        <br>
+
+        <!-- Button to reset the div "cont" & button to download the content of div "cont" to a txt file -->
+        <button onclick="resetAll()">Reset All Tracks</button> <button id="down">TXT Download</button>
+        
+        <div id="cont"></div>
+    
+        <!-- Script to save files in txt -->
+        <script>
+            const saveFile = (content, name) => {
+                const a = document.createElement("a");
+                const file = new Blob([content], {type: 'text/plain'});
+                const url = URL.createObjectURL(file);
+                a.href = url;
+                a.download = name;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+            const downBut = document.querySelector("#down");
+            downBut.onclick = () => {
+                let content = document.getElementById("cont").textContent;
+                if(content){
+                    saveFile(content, "Set.txt");
+                }
+            }
+        </script>
+
+</body>
+
+</html>
